@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyEventTarget Demo</title>
+  <link rel="stylesheet" href="./my-event-target-demo/styles.css" />
+</head>
+<body>
+  <main>
+    <h1>MyEventTarget Demo</h1>
+    <p>
+      这个 demo 用简化代码模拟浏览器事件系统的核心：监听器记录、事件对象内部标志位、捕获、目标、冒泡、默认行为取消、一次性监听、被动监听和 AbortSignal 清理。
+    </p>
+
+    <div class="layout">
+      <section class="panel">
+        <div class="controls">
+          <button class="primary" id="dispatch">dispatch child:save</button>
+          <button id="dispatchNoBubble">dispatch no bubble</button>
+          <button id="abort">abort signal listener</button>
+          <button id="reset">reset log</button>
+        </div>
+
+        <div class="tree">
+          <div class="node root">
+            <strong>root</strong>
+            capture listener / bubble listener
+          </div>
+          <div class="node parent">
+            <strong>parent</strong>
+            capture listener / bubble listener / signal listener
+          </div>
+          <div class="node child">
+            <strong>child</strong>
+            target listener / once listener / passive listener
+          </div>
+        </div>
+
+        <div class="hint">
+          打开 <code>my-event-target-demo/app.js</code> 阅读源码更清楚。点击主按钮时，事件会从 root 捕获到 child，再从 child 冒泡回 root。
+          <code>preventDefault()</code> 会让 <code>dispatchEvent()</code> 返回 false。
+        </div>
+      </section>
+
+      <section class="panel">
+        <pre id="log"></pre>
+      </section>
+    </div>
+  </main>
+
+  <script src="./my-event-target-demo/app.js"></script>
+</body>
+</html>
